@@ -4,19 +4,22 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>SecondProject.xcscheme_^#shared#^_</key>
+		<key>Pods-SecondProject.xcscheme</key>
 		<dict>
+			<key>isShown</key>
+			<false/>
 			<key>orderHint</key>
-			<integer>2</integer>
+			<integer>0</integer>
+		</dict>
+		<key>SwiftSVG.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>1</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
-	<dict>
-		<key>CFFC71C122B7FABB0065C00D</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-	</dict>
+	<dict/>
 </dict>
 </plist>
