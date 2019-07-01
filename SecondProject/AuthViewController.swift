@@ -35,9 +35,30 @@ class AuthViewController: UIViewController {
     @IBOutlet weak var balls_5: UIView!
     @IBOutlet weak var balls_6: UIView!
     
+    @IBOutlet weak var authView: UIView!
+    @IBOutlet weak var AuthTopConst: NSLayoutConstraint!
+    @IBOutlet weak var AuthBottomConst: NSLayoutConstraint!
+    
+    var boxCenterX: NSLayoutConstraint?
+    
+    @IBAction func userNameTarget(_ sender: UITextField) {
+        borderUsername.backgroundColor = UIColor(red: 81/255, green: 206/255, blue: 236/255, alpha: 1.0)
+    }
+    @IBAction func passTarget(_ sender: UITextField) {
+        borderPassword.backgroundColor = UIColor(red: 81/255, green: 206/255, blue: 236/255, alpha: 1.0)
+    }
+    @IBAction func userNameTargetEnd(_ sender: UITextField) {
+        borderUsername.backgroundColor = UIColor(red: 237/255, green: 237/255, blue: 237/255, alpha: 1)
+    }
+    @IBAction func passTargetEnd(_ sender: UITextField) {
+        borderPassword.backgroundColor = UIColor(red: 237/255, green: 237/255, blue: 237/255, alpha: 1)
+    }
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //InputUsername.delegate = self
         
         balls_1.setGradientBackgroundFilters(
             colorOne: UIColor(red:81/255, green:206/255, blue:236/255, alpha:1),
@@ -107,7 +128,12 @@ class AuthViewController: UIViewController {
         AuthLogo.image = UIImage(named:"logo")
         AuthLogo.contentMode = .scaleAspectFit
         AuthLogo.translatesAutoresizingMaskIntoConstraints = false
-        AuthLogo.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        //AuthLogo.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        boxCenterX = NSLayoutConstraint(item: AuthLogo, attribute: .centerX,
+                                        relatedBy: .equal, toItem: authView, attribute: .centerX,
+                                        multiplier: 1, constant: 0)
+        boxCenterX?.isActive = true
+        
         
         LabelUsername.textColor = UIColor(red: 132/255, green: 146/255, blue: 166/255, alpha: 1.0)
         labelPassword.textColor = UIColor(red: 132/255, green: 146/255, blue: 166/255, alpha: 1.0)
@@ -158,8 +184,25 @@ class AuthViewController: UIViewController {
         //contentView = CGPoint(x: 0, y: kbFrameSize.height)
         //print(kbFrameSize.height)
         
-        AuthLogo.frame.size.height = 38
-        AuthLogo.frame.size.width = 38
+        AuthTopConst.constant = 20
+        AuthBottomConst.constant = 30
+        
+        NSLayoutConstraint(item: AuthLogo, attribute: NSLayoutConstraint.Attribute.width, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: 38).isActive = true
+        NSLayoutConstraint(item: AuthLogo, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: 38).isActive = true
+        
+        
+        boxCenterX?.isActive = false
+        
+        let leftConstraint = NSLayoutConstraint(item: AuthLogo,
+                                                attribute: .left,
+                                                relatedBy: .equal,
+                                                toItem: authView,
+                                                attribute: .left,
+                                                multiplier: 1.0,
+                                                constant: 0.0);
+        authView.addConstraint(leftConstraint);
+        
+        authView.layoutIfNeeded()
         
     }
     
