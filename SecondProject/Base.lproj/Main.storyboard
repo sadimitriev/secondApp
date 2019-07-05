@@ -107,7 +107,7 @@
                                         </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3t2-wi-bm5">
-                                        <rect key="frame" x="271" y="370" width="37" height="13"/>
+                                        <rect key="frame" x="269" y="370" width="39" height="13"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="13" id="B70-wN-fGy"/>
                                         </constraints>
@@ -131,9 +131,12 @@
                                         <state key="normal" title="Sign-In">
                                             <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="LoginTapped:" destination="iBA-2D-Ffg" eventType="touchUpInside" id="XCY-yN-y4W"/>
+                                        </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Q6-vt-iQU">
-                                        <rect key="frame" x="197" y="432" width="74" height="13"/>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Q6-vt-iQU">
+                                        <rect key="frame" x="194" y="432" width="74" height="13"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="13" id="LFi-x8-dt4"/>
                                         </constraints>

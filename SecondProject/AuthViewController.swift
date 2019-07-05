@@ -54,8 +54,6 @@ class AuthViewController: UIViewController {
         borderPassword.backgroundColor = UIColor(red: 237/255, green: 237/255, blue: 237/255, alpha: 1)
     }
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         //InputUsername.delegate = self
@@ -215,7 +213,70 @@ class AuthViewController: UIViewController {
         InputUsername.resignFirstResponder()
         InputPassword.resignFirstResponder()
     }
+    
+    @IBAction func LoginTapped(_ sender: Any) {
+        
+        var error = [String]()
+        
+        let username = self.InputUsername.text
+        let password = self.InputPassword.text
+        
+        if(!formValidate(string: username!,type: "login")) {
+            error.append("login")
+            borderUsername.backgroundColor = UIColor.red
+        }
+        if(!formValidate(string: password!,type: "pass")) {
+            error.append("pass")
+            borderPassword.backgroundColor = UIColor.red
+        }
+        
+        if (error.count != 0) {
+            let animation = CABasicAnimation(keyPath: "position")
+            animation.duration = 0.07
+            animation.repeatCount = 4
+            animation.autoreverses = true
+            animation.fromValue = NSValue(cgPoint: CGPoint(x: singIn.center.x - 10, y: singIn.center.y))
+            animation.toValue = NSValue(cgPoint: CGPoint(x: singIn.center.x + 10, y: singIn.center.y))
+            
+            singIn.layer.add(animation, forKey: "position")
+        }
+        print("check auth")
+    }
+    
+    func formValidate(string: String, type: String) -> Bool {
+        var lengthCount = 0
+        switch type {
+        case "login":
+            lengthCount = 6
+            break
+        case "pass":
+            lengthCount = 8
+            break
+        default:
+            lengthCount = 8
+            break
+        }
+        if (string.count >= lengthCount) {
+            if(string.isAlphanumeric(is_pass: true)){
+                return true
+            }
+        }
+        return false
+    }
 }
+extension String {
+    func isAlphanumeric(is_pass: Bool = false) -> Bool {
+        if is_pass {
+            return self.range(of: "[^a-zA-Z0-9]", options: .regularExpression) == nil && self != ""
+        }
+        else {
+            return self.range(of: "[^a-zA-Z]", options: .regularExpression) == nil && self != ""
+        }
+    }
+    
+}
+
+
 extension UIColor {
     static var themeMoreButton = UIColor.init(red: 132/255, green: 146/255, blue: 166/255, alpha: 1.0)
 }
