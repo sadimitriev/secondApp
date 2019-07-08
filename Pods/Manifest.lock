@@ -1,16 +1,26 @@
 PODS:
+  - Realm (3.17.0):
+    - Realm/Headers (= 3.17.0)
+  - Realm/Headers (3.17.0)
+  - RealmSwift (3.17.0):
+    - Realm (= 3.17.0)
   - SwiftSVG (2.2.1)
 
 DEPENDENCIES:
+  - RealmSwift
   - SwiftSVG (= 2.2.1)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - Realm
+    - RealmSwift
     - SwiftSVG
 
 SPEC CHECKSUMS:
+  Realm: b30db41ff34fc858ffc25ba8d44a82c164e7ccd0
+  RealmSwift: fe733e459d60dc7b6971d4cbee2eb4854097d12c
   SwiftSVG: e55084e4c5534f3f25743003a6a3a88580cacfb0
 
-PODFILE CHECKSUM: 4854317c64e55c2b5329540e16a4260ca3faade4
+PODFILE CHECKSUM: f36522c92c21ba52f69a2ef343c9d3268fecedb9
 
 COCOAPODS: 1.6.1

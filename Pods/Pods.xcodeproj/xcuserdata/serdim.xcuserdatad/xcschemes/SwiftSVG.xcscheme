@@ -14,8 +14,8 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "FE90348346B0B4A746CA0DDC006C9D5F"
-               BuildableName = "libSwiftSVG.a"
+               BlueprintIdentifier = "4C1ED6650CE4926DE9CE64FD794CBAAE"
+               BuildableName = "SwiftSVG.framework"
                BlueprintName = "SwiftSVG"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
