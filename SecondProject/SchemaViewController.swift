@@ -115,6 +115,10 @@ class SchemaViewController: UITableViewController {
             if (cacheId! < Int(cacheFolder)!+86400) {
                 self.cacheFoler = cacheId!
                 return
+            } else {
+                if ((try? FileManager.default.removeItem(at: url.appendingPathComponent("cache").appendingPathComponent(filename))) != nil) {
+                    print("Could not delete file")
+                }
             }
         }
         self.cacheFoler = Int(cacheFolder)!
