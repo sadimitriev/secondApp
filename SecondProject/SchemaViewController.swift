@@ -10,6 +10,9 @@ import UIKit
 
 class SchemaViewController: UITableViewController {
     
+    let globalPath: String = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
+    var cacheFoler: Int = 0
+    
     var storedOffsets = [Int: CGFloat]()
     
     let breeds = ["affenpinscher","african","airedale","akita","appenzeller","basenji","beagle","bluetick","borzoi","bouvier","boxer","brabancon","briard"]
@@ -18,6 +21,8 @@ class SchemaViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        checkCache()
         
         var arr : [[String]] = []
         
@@ -36,6 +41,8 @@ class SchemaViewController: UITableViewController {
                         }
                         arr.append(test)
                     }
+                } else {
+                    print("error jsonObj")
                 }
             }).resume()
         }
@@ -74,6 +81,45 @@ class SchemaViewController: UITableViewController {
         
         storedOffsets[indexPath.row] = tableViewCell.collectionViewOffset
     }
+    
+    func createFolder(folder: String, inCache: Bool = false) {
+        let fileManager = FileManager.default
+        let url = URL(fileURLWithPath: globalPath)
+        var newDirectory = url.appendingPathComponent(folder)
+        if inCache {
+            newDirectory = url.appendingPathComponent("cache").appendingPathComponent(folder)
+        }
+        try? fileManager.createDirectory(at: newDirectory, withIntermediateDirectories: false, attributes: nil)
+    }
+    func createFolderCache() {
+        let url = URL(fileURLWithPath: globalPath)
+        let filePath = url.appendingPathComponent("cache").path
+        let fileManager = FileManager.default
+        if !fileManager.fileExists(atPath: filePath) {
+            createFolder(folder: "cache")
+        }
+    }
+    func checkCache() {
+        let ticks = NSDate().timeIntervalSince1970
+        let cacheFolder = String(format:"%.f", ticks)
+        createFolderCache()
+        let url = URL(fileURLWithPath: globalPath)
+        let filePath = url.appendingPathComponent("cache").path
+        let enumerator = try! FileManager.default.enumerator(atPath: filePath)
+        
+        while let filename = enumerator?.nextObject() as? String {
+            if (filename == ".DS_Store") {
+                continue
+            }
+            let cacheId = Int(filename)
+            if (cacheId! < Int(cacheFolder)!+86400) {
+                self.cacheFoler = cacheId!
+                return
+            }
+        }
+        self.cacheFoler = Int(cacheFolder)!
+        createFolder(folder: cacheFolder, inCache: true)
+    }
 }
 extension SchemaViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
@@ -91,34 +137,46 @@ extension SchemaViewController: UICollectionViewDelegate, UICollectionViewDataSo
         
         let defaultName = "spinner-of-dots.png"
         cell.tag = indexPath.row
-        cell.image.image = UIImage(named: defaultName)
         
         if (fullArr.count != 0) {
             let url = URL(string: (fullArr[collectionView.tag][indexPath.row]) ?? "")
             if (url != nil) {
                 let filename = (url)!.lastPathComponent
+                let cacheId = String(self.cacheFoler)
+                
+                let urlSearch = URL(fileURLWithPath: globalPath)
+                let pathCustom = "cache/" + cacheId + "/" + filename
+                var filePath = urlSearch.appendingPathComponent(pathCustom).path
+                
+                let fileManager = FileManager.default
+                if fileManager.fileExists(atPath: filePath) {
+                    cell.image.image = UIImage(named: self.globalPath + "/cache/" + cacheId + "/" + filename)
+                    cell.image.contentMode = .scaleToFill
+                    return cell
+                } else {
+                    cell.image.image = UIImage(named: defaultName)
+                    cell.image.contentMode = .scaleToFill
+                }
+                
                 DispatchQueue.global().async {
                     if let data = try? Data(contentsOf: url!){
                         DispatchQueue.main.async {
                             if(cell.tag == indexPath.row) {
                                 let cellImage = UIImage(data: data)
-                                cell.image.image = cellImage
-                                cell.image.contentMode = .scaleToFill
-                                
+
                                 let myImageView = UIImageView(image: cellImage)
                                 let imageData = myImageView.image!.pngData()
-                                
-                                UserDefaults.standard.set(imageData, forKey: filename)
+
+                                let url = URL(fileURLWithPath: self.globalPath)
+
+                                let urlFilename = url.appendingPathComponent("cache").appendingPathComponent(cacheId).appendingPathComponent(filename)
+                                try! imageData!.write(to: urlFilename)
+
+                                cell.image.image = UIImage(named: self.globalPath + "/cache/" + cacheId + "/" + filename)
+                                cell.image.contentMode = .scaleToFill
                             }
                         }
                     }
-                }
-                if let data:NSData = UserDefaults.standard.object(forKey: filename) as? NSData {
-                    let imageView = UIImage(data: data as Data)
-                    
-                    cell.image.image = imageView
-                    cell.image.contentMode = .scaleToFill
-                    return cell
                 }
             }
         }
