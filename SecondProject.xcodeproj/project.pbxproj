@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CF056F2022BAC21B00389327 /* SF-UI-Display.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF056F1F22BAC21B00389327 /* SF-UI-Display.ttf */; };
 		CF056F2222BAC56E00389327 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF056F2122BAC56E00389327 /* AuthViewController.swift */; };
 		CF10FE8D22CEFF8B00261F92 /* SchemaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF10FE8C22CEFF8B00261F92 /* SchemaViewController.swift */; };
 		CF6C585E22D28AD300230D44 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6C585D22D28AD300230D44 /* CollectionViewCell.swift */; };
@@ -23,7 +22,6 @@
 /* Begin PBXFileReference section */
 		11B5F3F6CB5F22F4CAD20404 /* Pods-SecondProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SecondProject.debug.xcconfig"; path = "Target Support Files/Pods-SecondProject/Pods-SecondProject.debug.xcconfig"; sourceTree = "<group>"; };
 		5C3A5BE788045C89645AE1AE /* Pods-SecondProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SecondProject.release.xcconfig"; path = "Target Support Files/Pods-SecondProject/Pods-SecondProject.release.xcconfig"; sourceTree = "<group>"; };
-		CF056F1F22BAC21B00389327 /* SF-UI-Display.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-UI-Display.ttf"; path = "../../../../Downloads/SF-UI-Display.ttf"; sourceTree = "<group>"; };
 		CF056F2122BAC56E00389327 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		CF10FE8C22CEFF8B00261F92 /* SchemaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchemaViewController.swift; sourceTree = "<group>"; };
 		CF6C585D22D28AD300230D44 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
@@ -35,6 +33,7 @@
 		CFFC71CC22B7FABC0065C00D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CFFC71CF22B7FABC0065C00D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CFFC71D122B7FABC0065C00D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CFFEB0D422D5D8BE0064E826 /* SF-UI-Display.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Display.ttf"; sourceTree = "<group>"; };
 		DA5D4CDB827C1F88C9094ABF /* Pods_SecondProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SecondProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -67,14 +66,6 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		CF056F1E22BAC1FC00389327 /* fonts */ = {
-			isa = PBXGroup;
-			children = (
-				CF056F1F22BAC21B00389327 /* SF-UI-Display.ttf */,
-			);
-			path = fonts;
-			sourceTree = "<group>";
-		};
 		CFFC71B922B7FABB0065C00D = {
 			isa = PBXGroup;
 			children = (
@@ -96,7 +87,7 @@
 		CFFC71C422B7FABB0065C00D /* SecondProject */ = {
 			isa = PBXGroup;
 			children = (
-				CF056F1E22BAC1FC00389327 /* fonts */,
+				CFFEB0D322D5D89B0064E826 /* fonts */,
 				CFFC71C522B7FABB0065C00D /* AppDelegate.swift */,
 				CFFC71C722B7FABB0065C00D /* ViewController.swift */,
 				CFFC71C922B7FABB0065C00D /* Main.storyboard */,
@@ -109,6 +100,14 @@
 				CF6C585D22D28AD300230D44 /* CollectionViewCell.swift */,
 			);
 			path = SecondProject;
+			sourceTree = "<group>";
+		};
+		CFFEB0D322D5D89B0064E826 /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				CFFEB0D422D5D8BE0064E826 /* SF-UI-Display.ttf */,
+			);
+			path = fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -171,7 +170,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CF056F2022BAC21B00389327 /* SF-UI-Display.ttf in Resources */,
 				CFFC71D022B7FABC0065C00D /* LaunchScreen.storyboard in Resources */,
 				CFFC71CD22B7FABC0065C00D /* Assets.xcassets in Resources */,
 				CFFC71CB22B7FABB0065C00D /* Main.storyboard in Resources */,
